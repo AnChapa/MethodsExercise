@@ -19,33 +19,43 @@
 
             //Exercise 2
 
-            Console.WriteLine("Give some number: ");
-            int num1 = int.Parse(Console.ReadLine());
-            Console.WriteLine("Give another number: ");
-            int num2 = int.Parse(Console.ReadLine());
-            Console.WriteLine($"{num1} + {num2} = {add(num1, num2)}");
-            Console.WriteLine($"{num1} - {num2} = {sub(num1, num2)}");
-            Console.WriteLine($"{num1} * {num2} = {mult(num1, num2)}");
-            Console.WriteLine($"{num1} / {num2} = {div(num1, num2)}");
+            Console.WriteLine("\nEnter a list of numbers seperated with commas for the summation:");
+            string? input = Console.ReadLine();
+
+            if(input != null )
+            {
+                string[] numList = input.Split(',');
+                int[] numbers = new int[numList.Length];
+                for (int i = 0; i < numList.Length; i++)
+                {
+                    if (int.TryParse(numList[i], out int parsedNumber))
+                    {
+                        numbers[i] = parsedNumber;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"Invalid input: {numList[i]} is not a valid integer.");
+                        return;
+                    }
+                }
+                Console.WriteLine($"= {add(numbers)}");
+            }
+            else
+            {
+                Console.WriteLine("Error, can not be null");
+            }
         }
 
-        public static int add(int num1, int num2)
+        public static int add(params int[] numList)
         {
-            return num1 + num2;
-        }
-
-        public static int sub(int num1, int num2)
-        {
-            return num1 - num2;
-        }
-
-        public static int mult(int num1, int num2)
-        {
-            return num1 * num2;
-        }
-        public static decimal div(int num1, int num2)
-        {
-            return num1 / num2;
+            int sum = 0;
+            for(int i =  0; i < numList.Length; i++)
+            {
+                Console.Write(numList[i] + " + ");
+                sum += numList[i];
+            }
+            
+            return sum;
         }
     }
 }
