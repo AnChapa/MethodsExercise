@@ -38,7 +38,8 @@
                         return;
                     }
                 }
-                Console.WriteLine($"= {add(numbers)}");
+                Console.WriteLine($"= {Add(numbers)}");
+                Console.WriteLine($"= {Multiply(numbers)}");
             }
             else
             {
@@ -46,7 +47,7 @@
             }
         }
 
-        public static int add(params int[] numList)
+        public static int Add(params int[] numList)
         {
             int sum = 0;
             for(int i =  0; i < numList.Length; i++)
@@ -55,6 +56,18 @@
                 sum += numList[i];
             }
             
+            return sum;
+        }
+        public static int Multiply(params int[] numList)
+        {
+            int sum = numList[0];
+            for (int i = 0; i < numList.Length; i++)
+            {
+                Console.Write(numList[i] + " * ");
+                if(i != 0)
+                    sum = sum * numList[i];
+            }
+
             return sum;
         }
     }
